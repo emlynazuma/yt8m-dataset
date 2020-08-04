@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 current="$(pwd)"
 mkdir -p $current/video
 cd $current/video

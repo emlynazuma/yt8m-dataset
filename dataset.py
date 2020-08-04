@@ -24,7 +24,7 @@ def convert(yt_8m_id):
     return y_id
 
 
-def get_id_label(dataset):
+def get_id_label(dataset, category):
     count = 0
     temp = []
 
@@ -51,7 +51,7 @@ def get_id_label(dataset):
             temp = []
 
     df = pd.DataFrame(temp)
-    df.to_csv('./data.csv', mode='a', header=False, index=False)
+    df.to_csv(f'./{category}_data.csv', mode='a', header=False, index=False)
 
 
 def get_yt_text(yt_id):
@@ -77,4 +77,14 @@ if __name__ == "__main__":
                 f.write(f'{fil}\n')
 
             dataset = tf.data.TFRecordDataset(f"{video_dir}{fil}")
-            get_id_label(dataset)
+
+            if fil.startswith('train'):
+                category = 'train'
+            elif fil.startswith('validate'):
+                category = 'validate'
+            elif fil.startswith('test'):
+                category = 'test'
+            else:
+                category = ''
+
+            get_id_label(dataset, category)

@@ -1,3 +1,0 @@
-train1745.tfrecord
-train3826.tfrecord
-train0815.tfrecord
