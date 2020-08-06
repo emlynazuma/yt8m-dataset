@@ -3,6 +3,7 @@ import os
 import xml.etree.cElementTree as ET
 from urllib import request as req
 import pandas as pd
+from argparse import ArgumentParser
 
 import requests
 import tensorflow as tf
@@ -39,7 +40,7 @@ def get_id_label(dataset, category):
             "yt_8m_id": yt_8m_id,
             "yt_id": yt_id,
             "labels": labels,
-            "texts": get_yt_text(yt_id)
+            # "texts": get_yt_text(yt_id)
         }
         temp.append(info)
         count += 1
@@ -47,7 +48,7 @@ def get_id_label(dataset, category):
 
         if len(temp) % 100 == 0:
             df = pd.DataFrame(temp)
-            df.to_csv('./data.csv', mode='a', header=False, index=False)
+            df.to_csv(f'./{category}_data.csv', mode='a', header=False, index=False)
             temp = []
 
     df = pd.DataFrame(temp)
@@ -63,6 +64,10 @@ def get_yt_text(yt_id):
 
 
 if __name__ == "__main__":
+    parser = ArgumentParser()
+    parser.add_argument('--category', type=str)
+    args = parser.parse_args()
+    category = args.category
     video_dir = './video/'
     log = open('./parsed.txt').read().split()
     print(log)
@@ -70,21 +75,11 @@ if __name__ == "__main__":
     for fil in os.listdir(video_dir):
         print(fil)
 
-        if fil.endswith('tfrecord') and fil not in log:
-            print('in', fil)
+        if fil.endswith('tfrecord') and fil.startswith(category) and fil not in log:
 
             with open('./parsed.txt', 'a+') as f:
                 f.write(f'{fil}\n')
 
             dataset = tf.data.TFRecordDataset(f"{video_dir}{fil}")
-
-            if fil.startswith('train'):
-                category = 'train'
-            elif fil.startswith('validate'):
-                category = 'validate'
-            elif fil.startswith('test'):
-                category = 'test'
-            else:
-                category = ''
 
             get_id_label(dataset, category)
