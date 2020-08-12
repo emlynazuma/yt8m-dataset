@@ -131,3 +131,5 @@ dmypy.json
 video/*
 log.txt
 yt8m
+# data/*
+# parsed/*
