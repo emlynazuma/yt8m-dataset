@@ -1,7 +1,7 @@
 # dataset-yt8m
 ----
 ## Processing dataset of yt8m.
-### yt8m is a open dataset which contain large amount of human labeled youtube videos. This repo provide scripts to process these data into training-ready format for different purpose.
+yt8m is a open dataset which contain large amount of human labeled youtube videos. This repo provide scripts to process these data into training-ready format for different purpose.
 
 #### Step1
 Run `./download.sh` to download yt8m video level data.
