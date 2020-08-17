@@ -133,3 +133,5 @@ log.txt
 parsed.txt
 yt8m
 data/*
+
+.vscode/*
