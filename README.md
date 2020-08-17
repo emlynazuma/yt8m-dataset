@@ -9,15 +9,11 @@ Run `./download.sh` to download yt8m video level data.
 The data is a set of tfrecord files.
 
 #### Step2
-Run `python tfrecord_to_csv.py --category {{category}}` to map yt8m id to youtube id.
-
-{{category}} is used for spliting data into multiple part and run parallely.
-
-**NOTE**: not all of id can map to youtube id.
+Run `python tfrecord_to_csv.py --category {{category}}` to convert tfrecord extension to csv extension.
 
 #### Step3
 
-Run `python get_ytid_and_cap.py --category {{category}}` to retrive english captions.
+Run `python get_ytid_and_cap.py --category {{category}}` to retrive english captions and map yt8m id to youtube id.
 
 {{category}} is used for spliting data into multiple part and run parallely.
 
