@@ -5,15 +5,15 @@ import pandas as pd
 
 from utils import get_yt_text, convert_id
 
-names = ['id', 'yt_id', 'labels']
+names = ['yt_8m_id', 'labels']
 data_dir = './data/yt8m_in_csv'
 
 
 def parsed(to_be_parse, names):
     chunksize = 10
     target_path = to_be_parse.split('/')
-    target_path[1] = 'parsed'
-    target_path = '/'.join(target_path) + '.csv'
+    target_path[2] = 'yt8m_in_csv_id_cap'
+    target_path = '/'.join(target_path)
 
     for df in pd.read_csv(to_be_parse, names=names, chunksize=chunksize):
         df['yt_id'] = df['yt_8m_id'].apply(lambda x: convert_id(x))
