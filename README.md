@@ -23,7 +23,7 @@ Run `python get_ytid_and_cap.py --category {{category}}` to retrive english capt
 
 Run `python preprocessing.py` to 
 
-1. select videos which has caption.
+1. filter videos which has captions.
 
 2. combine yt label.
 
