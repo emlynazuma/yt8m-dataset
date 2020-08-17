@@ -11,7 +11,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
     category = args.category
 
-    data_dir = './yt8m_data_raw/'
+    data_dir = './data/yt8m_raw/'
     log = open('./parsed.txt').read().split()
     print(log)
 
